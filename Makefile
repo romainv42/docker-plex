@@ -5,7 +5,9 @@ archs ?= amd64 arm32v6 arm64v8 aarch64
 
 .PHONY: all build publish latest
 all: build publish latest
-build: 
+qemu-aarch64-static:
+	cp /usr/bin/qemu-aarch64-static .
+build: qemu-aarch64-static
 	$(foreach arch,$(archs), \
 		a=$$(echo $(arch) | awk -F"arm" '{print $$2}'); \
 		if [ $(arch) = aarch64 ]; then a=arm; fi; \
